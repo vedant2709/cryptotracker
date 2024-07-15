@@ -20,7 +20,7 @@ function Header() {
           <p className="link">Watchlist</p>
         </a>
         <a href="#">
-          <Button text={'Dashboard'} outlined={true} onClick={()=>console.log("btn clicked")}/>
+          <Button text={'Dashboard'} outlined={false} onClick={()=>console.log("btn clicked")}/>
         </a>
       </div>
       <div className="mobile-drawer">
