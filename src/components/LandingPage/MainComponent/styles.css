@@ -1,36 +1,37 @@
-.flex-info{
+.flex-info {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding: 0.5rem 3rem;
 }
 
-.track-crypto-heading,.real-time-heading{
-  font-size: 6.5rem;
+.track-crypto-heading,
+.real-time-heading {
+  font-size: 6rem;
   margin: 0;
 }
 
-.track-crypto-heading{
+.track-crypto-heading {
   color: var(--white);
   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: var(--white);
 }
 
-.track-crypto-heading:hover{
+.track-crypto-heading:hover {
   color: var(--black);
   -webkit-text-stroke-color: var(--white);
   transition: all 0.3s;
 }
 
-.real-time-heading{
+.real-time-heading {
   color: var(--blue);
 }
 
-.info-text{
+.info-text {
   color: var(--grey);
 }
 
-.btn-flex{
+.btn-flex {
   display: flex;
   justify-content: flex-start;
   gap: 1.5rem;
@@ -38,12 +39,12 @@
   align-items: center;
 }
 
-.phone-container{
+.phone-container {
   width: 50%;
   position: relative;
 }
 
-.iphone{
+.iphone {
   position: absolute;
   z-index: 100;
   min-width: 280px;
@@ -51,7 +52,7 @@
   right: 0;
 }
 
-.gradient{
+.gradient {
   position: absolute;
   min-width: 230px;
   width: 40%;
@@ -59,60 +60,61 @@
   top: 7rem;
 }
 
-@media only screen and (max-width:1250px){
-  .track-crypto-heading,.real-time-heading{
+@media only screen and (max-width: 1250px) {
+  .track-crypto-heading,
+  .real-time-heading {
     font-size: 5rem;
     margin: 0;
   }
 }
 
-@media only screen and (max-width:1000px){
-  .iphone{
+@media only screen and (max-width: 1000px) {
+  .iphone {
     min-width: 250px;
     width: 50%;
   }
-  
-  .gradient{
+
+  .gradient {
     min-width: 200px;
     width: 40%;
   }
 }
-@media only screen and (max-width:800px){
-  .flex-info{
+@media only screen and (max-width: 800px) {
+  .flex-info {
     flex-direction: column;
   }
-  .phone-container{
+  .phone-container {
     display: block;
     margin: auto;
     margin-top: 3rem;
   }
-  .iphone{
-    
+  .iphone {
   }
-  
-  .gradient{
+
+  .gradient {
     min-width: 200px;
     width: 40%;
   }
 
-  .left-component{
+  .left-component {
     width: 100%;
   }
 
-  .track-crypto-heading,.real-time-heading{
+  .track-crypto-heading,
+  .real-time-heading {
     font-size: 3rem;
     margin: 0;
     text-align: center;
   }
-  .info-text{
+  .info-text {
     text-align: center;
     margin-top: 1rem;
   }
-  .track-crypto-heading{
+  .track-crypto-heading {
     -webkit-text-stroke-width: 1.5px;
   }
 
-  .btn-flex{
+  .btn-flex {
     justify-content: center;
   }
 }
