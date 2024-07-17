@@ -1,0 +1,10 @@
+.notfound-text{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.notfound-text h1{
+    color: white;
+}
