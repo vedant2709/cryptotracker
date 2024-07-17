@@ -6,3 +6,24 @@
   flex-wrap: wrap;
   margin: 1.5rem 2rem;
 }
+
+.main-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.list-table{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .list-table {
+    width: 100%;
+  }
+}
