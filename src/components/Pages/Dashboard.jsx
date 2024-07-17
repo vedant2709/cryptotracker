@@ -4,24 +4,34 @@ import TabsComponent from "../Dashboard/Tabs";
 import axios from "axios";
 import Search from "../Dashboard/Search";
 import Notfound from "../Dashboard/NoFound";
+import PaginationControlled from "../Dashboard/Pagination";
 
 function DashboardPage() {
   const [coins, setCoins] = useState([]);
+  const [paginatedCoins, setPaginatedCoins] = useState([]);
   const [search, setSearch] = useState("");
 
-  const onSearchChange=(e)=>{
-    setSearch(e.target.value)
-  }
-  
-  const clearSearch=()=>{
-    setSearch("")
-  }
+  const onSearchChange = (e, value) => {
+    setSearch(e.target.value);
+    
+  };
+
+  const clearSearch = () => {
+    setSearch("");
+  };
 
   var filteredCoins = coins.filter(
     (coin) =>
       coin.name.toLowerCase().includes(search.trim().toLowerCase()) ||
       coin.symbol.toLowerCase().includes(search.trim().toLowerCase())
   );
+
+  const [page, setPage] = React.useState(1);
+  const handlePageChange = (event, value) => {
+    setPage(value);
+    var previousIndex = (value - 1) * 10;
+    setPaginatedCoins(coins.slice(previousIndex, previousIndex + 10));
+  };
 
   useEffect(() => {
     axios
@@ -30,7 +40,8 @@ function DashboardPage() {
       )
       .then((response) => {
         console.log(response);
-        setCoins(response.data)
+        setCoins(response.data);
+        setPaginatedCoins(response.data.slice(0, 10));
       })
       .catch((error) => {
         console.log(error);
@@ -39,13 +50,16 @@ function DashboardPage() {
   return (
     <div>
       <Header />
-      <Search onSearchChange={onSearchChange} search={search}/>
+      <Search onSearchChange={onSearchChange} search={search} />
       {/* {filteredCoins.length > 0 ? (
         <TabsComponent coins={filteredCoins} />
       ) : (
         <Notfound clearSearch={clearSearch}/>
       )} */}
-      <TabsComponent coins={filteredCoins} />
+      <TabsComponent coins={search ? filteredCoins : paginatedCoins} />
+      {!search && (
+        <PaginationControlled page={page} handlePageChange={handlePageChange} />
+      )}
     </div>
   );
 }
