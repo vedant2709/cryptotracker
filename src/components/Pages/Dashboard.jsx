@@ -42,7 +42,6 @@ function DashboardPage() {
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100"
       )
       .then((response) => {
-        console.log(response);
         setCoins(response.data);
         setPaginatedCoins(response.data.slice(0, 10));
         setIsLoading(false);

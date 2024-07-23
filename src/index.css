@@ -56,3 +56,11 @@ a {
   text-decoration: none;
   color: var(--white) !important;
 }
+
+.grey-wrapper{
+  width: 90%;
+  background-color: var(--darkgrey);
+  margin: 1.5rem auto;
+  border-radius: 0.8rem;
+  padding: 0rem 0.5rem; 
+}

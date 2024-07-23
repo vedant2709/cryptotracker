@@ -8,6 +8,11 @@
   width: 100% !important;
 }
 
+.red{
+  color: var(--red);
+  border: 2px solid var(--red);
+}
+
 .list-row td {
   text-align: left;
   width: 18%;
@@ -89,7 +94,6 @@
   }
 
   .price-chip{
-    border: 1px solid var(--green);
     padding: 0.2rem 0.8rem;
     font-size: 0.75rem;
     margin: 0;
