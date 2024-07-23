@@ -5,15 +5,17 @@ import axios from "axios";
 import Search from "../Dashboard/Search";
 import Notfound from "../Dashboard/NoFound";
 import PaginationControlled from "../Dashboard/Pagination";
+import Loader from "../Common/Loader";
+import BackToTop from "../Common/BackToTop";
 
 function DashboardPage() {
   const [coins, setCoins] = useState([]);
   const [paginatedCoins, setPaginatedCoins] = useState([]);
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const onSearchChange = (e, value) => {
     setSearch(e.target.value);
-    
   };
 
   const clearSearch = () => {
@@ -31,6 +33,7 @@ function DashboardPage() {
     setPage(value);
     var previousIndex = (value - 1) * 10;
     setPaginatedCoins(coins.slice(previousIndex, previousIndex + 10));
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -42,25 +45,37 @@ function DashboardPage() {
         console.log(response);
         setCoins(response.data);
         setPaginatedCoins(response.data.slice(0, 10));
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   });
   return (
-    <div>
+    <>
       <Header />
-      <Search onSearchChange={onSearchChange} search={search} />
-      {/* {filteredCoins.length > 0 ? (
+      <BackToTop/>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div>
+          <Search onSearchChange={onSearchChange} search={search} />
+          {/* {filteredCoins.length > 0 ? (
         <TabsComponent coins={filteredCoins} />
       ) : (
         <Notfound clearSearch={clearSearch}/>
       )} */}
-      <TabsComponent coins={search ? filteredCoins : paginatedCoins} />
-      {!search && (
-        <PaginationControlled page={page} handlePageChange={handlePageChange} />
+          <TabsComponent coins={search ? filteredCoins : paginatedCoins} />
+          {!search && (
+            <PaginationControlled
+              page={page}
+              handlePageChange={handlePageChange}
+            />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }
 
