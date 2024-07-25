@@ -36,7 +36,7 @@ function List({ coin }) {
         ) : (
           <td>
             <div className="chip-flex">
-              <div className="price-chip red">
+              <div className="price-chip chip-red">
                 {coin.price_change_percentage_24h.toFixed(2)}%
               </div>
               <div className="icon-chip chip-red td-icon">
