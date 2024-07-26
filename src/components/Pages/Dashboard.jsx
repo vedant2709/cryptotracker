@@ -3,7 +3,6 @@ import Header from "../Common/Header";
 import TabsComponent from "../Dashboard/Tabs";
 import axios from "axios";
 import Search from "../Dashboard/Search";
-import Notfound from "../Dashboard/NoFound";
 import PaginationControlled from "../Dashboard/Pagination";
 import Loader from "../Common/Loader";
 import BackToTop from "../Common/BackToTop";
@@ -16,10 +15,6 @@ function DashboardPage() {
 
   const onSearchChange = (e, value) => {
     setSearch(e.target.value);
-  };
-
-  const clearSearch = () => {
-    setSearch("");
   };
 
   var filteredCoins = coins.filter(
@@ -36,15 +31,23 @@ function DashboardPage() {
     setIsLoading(false);
   };
 
+  const options = {
+    method: "GET",
+    url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100",
+    headers: {
+      accept: "application/json",
+      "x-cg-api-key": "	CG-DgmCe4K4mi4h3Fch7wqJ2iYv",
+    },
+  };
+
   useEffect(() => {
-    axios
-      .get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100"
-      )
+    axios.request('https://api.coingecko.com/api/v3/coins/markets?per_page=100&page=1&x_cg_demo_api_key=CG-yNNzG4uh9uVJLExU1/EQzNSqf')
+    // axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100")
       .then((response) => {
         setCoins(response.data);
         setPaginatedCoins(response.data.slice(0, 10));
         setIsLoading(false);
+        console.log(response)
       })
       .catch((error) => {
         console.log(error);
@@ -54,7 +57,7 @@ function DashboardPage() {
   return (
     <>
       <Header />
-      <BackToTop/>
+      <BackToTop />
       {isLoading ? (
         <Loader />
       ) : (
